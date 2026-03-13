@@ -8,12 +8,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-<!-- Add build, test, lint, and run commands here. Example:
+### Slash Commands (Claude Code)
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `/new-feature` | `/new-feature <description>` | Implement a new feature following project conventions |
+| `/fix` | `/fix <bug description>` | Fix a bug with minimal, focused changes |
+| `/review` | `/review [file or description]` | Code review against quality, security, and git standards |
+| `/ship` | `/ship <feature description>` | Run full PM → Full Stack → QA pipeline |
+
+### Shell Commands
+
+<!-- Add project-specific build, test, lint, and run commands here once the stack is decided. Example:
 ```
 npm install       # install dependencies
 npm run dev       # start dev server
 npm test          # run all tests
-npm test -- foo   # run a single test matching "foo"
 npm run lint      # lint
 ```
 -->
@@ -21,6 +31,21 @@ npm run lint      # lint
 ## Architecture
 
 <!-- Describe the high-level structure: key directories, data flow, important abstractions -->
+
+## Agent Team
+
+Bu proje 3 subagent + 1 orchestrator yapısıyla çalışır.
+
+```
+Kullanıcı → Orchestrator (Claude Code)
+                ├→ PM Agent          (agents/pm-agent.md)
+                ├→ Full Stack Agent  (agents/fullstack-agent.md)
+                └→ QA Agent          (agents/qa-agent.md)
+```
+
+**İş akışı:** Kullanıcı isteği → PM planlar → Full Stack yazar → QA test eder → Orchestrator sunar
+
+Her ajan tanımı `agents/` dizininde bulunur. Orchestrator olarak davranırken `agents/orchestrator.md`'yi takip et.
 
 ## Code Standards
 
